@@ -12,16 +12,13 @@ function App() {
           <h1 className="text-5xl md:text-7xl font-thin tracking-tighter mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-[var(--text-secondary)]">
             Welcome to the Suite
           </h1>
-          <p className="text-xl md:text-2xl text-[var(--text-secondary)] font-light tracking-wide">
-            Mr. Bell's Apps
-          </p>
         </header>
 
         {/* Main Content */}
         <main className="w-full max-w-7xl mx-auto">
           <div className="mb-8 text-center">
             <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-[var(--accent-glow)] mb-8">
-              Choose Your Tool
+              Choose Your App
             </h2>
           </div>
 
