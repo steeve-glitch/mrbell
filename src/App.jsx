@@ -8,11 +8,8 @@ function App() {
       <div className="min-h-screen flex flex-col items-center justify-center p-4">
 
         {/* Header Section */}
-        <header className="text-center mb-16 animate-fade-in-down">
-          <h1 className="text-5xl md:text-7xl font-thin tracking-tighter mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-[var(--text-secondary)]">
-            Welcome to the Suite
-          </h1>
-        </header>
+        {/* Header Section - Removed */}
+        <div className="mt-16"></div>
 
         {/* Main Content */}
         <main className="w-full max-w-7xl mx-auto">
