@@ -7,11 +7,11 @@ const AppCard = ({ title, description, icon, link, isComingSoon }) => {
             target={!isComingSoon ? "_blank" : undefined}
             rel={!isComingSoon ? "noopener noreferrer" : undefined}
             className={`
-        glass-panel block p-8 w-[300px] h-[400px] flex-shrink-0 
-        transition-all duration-300 ease-out
-        ${!isComingSoon && 'hover:transform hover:-translate-y-2 hover:bg-[rgba(255,255,255,0.08)] cursor-pointer'}
-        ${isComingSoon && 'opacity-60 cursor-default'}
-        flex flex-col justify-between
+        glass-panel block p-10 w-[280px] h-[420px] flex-shrink-0 
+        transition-all duration-500 ease-out
+        ${!isComingSoon && 'hover:-translate-y-4 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:bg-[rgba(255,255,255,0.08)] cursor-pointer'}
+        ${isComingSoon && 'opacity-50 cursor-default grayscale-[0.5]'}
+        flex flex-col justify-between group
       `}
         >
             <div className="flex flex-col items-center text-center space-y-6 mt-8">

@@ -38,8 +38,8 @@ const apps = [
 
 const Carousel = () => {
     return (
-        <div className="w-full overflow-x-auto pb-12 pt-4 px-4 md:px-0 hide-scrollbar">
-            <div className="flex space-x-8 md:justify-center min-w-max md:min-w-0 px-4">
+        <div className="w-full overflow-x-auto pb-16 pt-8 px-4 md:px-0 hide-scrollbar flex justify-center">
+            <div className="flex space-x-12 px-8">
                 {apps.map((app) => (
                     <AppCard key={app.id} {...app} />
                 ))}
