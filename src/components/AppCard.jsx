@@ -4,6 +4,8 @@ const AppCard = ({ title, description, icon, link, isComingSoon }) => {
     return (
         <a
             href={isComingSoon ? '#' : link}
+            target={!isComingSoon ? "_blank" : undefined}
+            rel={!isComingSoon ? "noopener noreferrer" : undefined}
             className={`
         glass-panel block p-8 w-[300px] h-[400px] flex-shrink-0 
         transition-all duration-300 ease-out
