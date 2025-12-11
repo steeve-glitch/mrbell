@@ -19,18 +19,10 @@ const apps = [
         isComingSoon: true
     },
     {
-        id: 3,
-        title: 'Flash Cards',
-        description: 'Master any subject with our intelligent spaced-repetition flash cards.',
-        icon: '🎴',
-        link: '#',
-        isComingSoon: true
-    },
-    {
-        id: 4,
-        title: 'Notes',
-        description: 'A minimal, distraction-free note taking app for deep work.',
-        icon: '📝',
+        id: 5,
+        title: 'Salesman App',
+        description: 'A companion app for Death of a Salesman.',
+        icon: '💼',
         link: '#',
         isComingSoon: true
     }
