@@ -1,16 +1,15 @@
 import React from 'react';
 
-const AppCard = ({ title, description, icon, link, isComingSoon }) => {
+const AppCard = ({ title, description, icon, link }) => {
     return (
         <a
-            href={isComingSoon ? '#' : link}
-            target={!isComingSoon ? "_blank" : undefined}
-            rel={!isComingSoon ? "noopener noreferrer" : undefined}
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
             className={`
-        glass-panel block p-10 w-[280px] h-[420px] flex-shrink-0 
+        glass-panel block p-8 w-[220px] h-[340px] flex-shrink-0 
         transition-all duration-500 ease-out
-        ${!isComingSoon && 'hover:-translate-y-4 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:bg-[rgba(255,255,255,0.08)] cursor-pointer'}
-        ${isComingSoon && 'opacity-50 cursor-default grayscale-[0.5]'}
+        hover:-translate-y-4 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] hover:bg-[rgba(255,255,255,0.08)] cursor-pointer
         flex flex-col justify-between group
       `}
         >
@@ -27,15 +26,9 @@ const AppCard = ({ title, description, icon, link, isComingSoon }) => {
             </div>
 
             <div className="w-full">
-                {isComingSoon ? (
-                    <div className="w-full py-3 text-center text-xs font-bold uppercase tracking-widest text-[var(--text-secondary)] border border-[var(--glass-border)] rounded-full">
-                        Coming Soon
-                    </div>
-                ) : (
-                    <div className="w-full py-3 text-center text-sm font-medium text-[var(--bg-dark)] bg-white rounded-full hover:bg-opacity-90 transition-colors">
-                        Launch App
-                    </div>
-                )}
+                <div className="w-full py-3 text-center text-sm font-medium text-[var(--bg-dark)] bg-white rounded-full hover:bg-opacity-90 transition-colors">
+                    Launch App
+                </div>
             </div>
         </a>
     );
