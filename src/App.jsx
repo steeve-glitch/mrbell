@@ -1,34 +1,60 @@
-import React from 'react';
-import Background from './components/Background';
-import Carousel from './components/Carousel';
+import { useState } from 'react';
+import { apps, groups } from './apps';
+import Element from './components/Element';
 
 function App() {
+  // null = show every group; otherwise the id of the one being shown
+  const [only, setOnly] = useState(null);
+  const colourOf = Object.fromEntries(groups.map((g) => [g.id, g.colour]));
+
   return (
-    <Background>
-      <div className="min-h-screen flex flex-col items-center justify-center p-4">
+    <div className="page">
+      <header>
+        <p className="kicker">Mr. Bell&rsquo;s</p>
+        <h1>
+          Periodic Table <span>of Apps</span>
+        </h1>
+        <p className="lede">
+          English practice, one element at a time. {apps.length} elements and counting.
+        </p>
+      </header>
 
-        {/* Header Section */}
-        {/* Header Section - Removed */}
-        <div className="mt-16"></div>
+      <nav className="legend" aria-label="Filter by course">
+        <button className={only === null ? 'chip on' : 'chip'} onClick={() => setOnly(null)}>
+          All
+        </button>
+        {groups.map((g) => (
+          <button
+            key={g.id}
+            className={only === g.id ? 'chip on' : 'chip'}
+            style={{ '--c': g.colour }}
+            aria-pressed={only === g.id}
+            onClick={() => setOnly(only === g.id ? null : g.id)}
+          >
+            <span className="swatch" />
+            {g.name}
+          </button>
+        ))}
+      </nav>
 
-        {/* Main Content */}
-        <main className="w-full max-w-7xl mx-auto">
-          <div className="mb-8 text-center">
-            <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-[var(--accent-glow)] mb-8">
-              Choose Your App
-            </h2>
-          </div>
+      <main className="table">
+        {apps.map((app) => (
+          <Element
+            key={app.symbol}
+            {...app}
+            colour={colourOf[app.group]}
+            dimmed={only !== null && only !== app.group}
+          />
+        ))}
+      </main>
 
-          <Carousel />
-        </main>
-
-        {/* Footer */}
-        <footer className="mt-16 text-[var(--text-secondary)] text-sm font-light">
-          <p>&copy; {new Date().getFullYear()} Mr. Bell's Apps. All rights reserved.</p>
-        </footer>
-
-      </div>
-    </Background>
+      <footer>
+        <p>
+          <span className="key">sign in</span> = uses your school Google account
+        </p>
+        <p>&copy; {new Date().getFullYear()} Mr. Bell&rsquo;s Apps</p>
+      </footer>
+    </div>
   );
 }
 

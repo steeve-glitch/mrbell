@@ -1,90 +1,108 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
+/* Plain CSS, system fonts only: nothing render-blocking from a third party,
+   so a school network that drops Google Fonts cannot hang the page. */
 :root {
-  --bg-primary: #0f172a;
-  --bg-secondary: #1e293b;
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --accent-primary: #38bdf8;
-  --accent-secondary: #818cf8;
-  --gradient-main: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 1rem;
-  --spacing-md: 2rem;
-  --spacing-lg: 4rem;
-  --bg-dark: #0f0c29;
-  --bg-gradient-start: #0f0c29;
-  --bg-gradient-mid: #302b63;
-  --bg-gradient-end: #24243e;
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  --text-primary: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --accent-glow: rgba(100, 200, 255, 0.4);
+  color-scheme: light;
+  --paper: #fbfbf7;
+  --grid: #e7e9f0;
+  --ink: #111318;
+  --dim: #555a66;
+  --orange: #ff9b54;
+  --green: #4fdc9c;
+  --lilac: #a99bff;
+  --yellow: #ffd84d;
+  --cyan: #5fd3f3;
+  --mono: ui-monospace, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  font-family: 'Outfit', sans-serif;
-  background: var(--bg-dark);
-  color: var(--text-primary);
+  font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: var(--ink);
+  /* graph paper */
+  background:
+    linear-gradient(var(--grid) 1px, transparent 1px) 0 0 / 1.5rem 1.5rem,
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0 / 1.5rem 1.5rem,
+    var(--paper);
   min-height: 100vh;
-  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Glassmorphism Utility */
-.glass-panel {
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-shadow);
-  border-radius: 24px;
+.page { max-width: 68rem; margin: 0 auto; padding: clamp(2rem, 7vh, 4.5rem) 1rem 2.5rem; }
+
+/* ---------- header ---------- */
+.kicker {
+  font-family: var(--mono); font-weight: 700; font-size: .95rem;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--dim);
+}
+h1 {
+  font-size: clamp(2.4rem, 8vw, 4.8rem); font-weight: 900;
+  letter-spacing: -.045em; line-height: .95; margin-top: .4rem;
+}
+h1 span {
+  display: inline-block; padding: 0 .18em; margin-top: .08em;
+  background: var(--ink); color: var(--paper); border-radius: .12em;
+}
+.lede { margin-top: 1rem; font-size: clamp(1.05rem, 2.4vw, 1.25rem); color: var(--dim); max-width: 36rem; }
+
+/* ---------- legend / filter ---------- */
+.legend { display: flex; flex-wrap: wrap; gap: .5rem; margin: 2rem 0 1.5rem; }
+.chip {
+  display: inline-flex; align-items: center; gap: .45rem;
+  font: inherit; font-size: .9rem; font-weight: 700; color: var(--ink);
+  padding: .45rem .85rem; border-radius: 999px; cursor: pointer;
+  background: #fff; border: 2px solid var(--ink);
+  transition: background .12s, color .12s;
+}
+.chip .swatch { width: .8rem; height: .8rem; border-radius: .2rem; background: var(--c); border: 1.5px solid var(--ink); }
+.chip:hover { background: #f0f0ea; }
+.chip.on { background: var(--ink); color: #fff; }
+.chip.on .swatch { border-color: #fff; }
+.chip:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+
+/* ---------- the table ---------- */
+.table {
+  display: grid; gap: .7rem;
+  grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
+}
+.element {
+  position: relative; display: flex; flex-direction: column;
+  aspect-ratio: 1 / 1.05; padding: 2.1rem .8rem .75rem;
+  background: var(--c); color: var(--ink); text-decoration: none;
+  border: 2px solid var(--ink); border-radius: .55rem;
+  transition: transform .15s, box-shadow .15s, opacity .2s, filter .2s;
+}
+.element:hover, .element:focus-visible {
+  transform: translateY(-4px) rotate(-1.5deg);
+  box-shadow: 0 6px 0 var(--ink);
+  outline: none;
+}
+.element:active { transform: translateY(0); box-shadow: none; }
+.element .num { position: absolute; top: .55rem; left: .7rem; font-family: var(--mono); font-weight: 700; font-size: .85rem; }
+.element .key {
+  position: absolute; top: .55rem; right: .6rem;
+  font-size: .62rem; font-weight: 800; letter-spacing: .05em; text-transform: uppercase;
+  padding: .12rem .4rem; border-radius: 999px; background: var(--ink); color: #fff;
+}
+.element .sym { margin-bottom: auto; font-size: clamp(2.4rem, 6vw, 3.1rem); font-weight: 900; letter-spacing: -.04em; line-height: 1; }
+.element .name { font-weight: 800; font-size: .95rem; line-height: 1.15; margin-top: .35rem; }
+.element .blurb { font-size: .78rem; line-height: 1.25; margin-top: .2rem; opacity: .78; }
+.element.dim { opacity: .18; filter: grayscale(1); pointer-events: none; }
+
+/* ---------- footer ---------- */
+footer {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem;
+  margin-top: 2.5rem; font-size: .85rem; color: var(--dim);
+}
+footer .key {
+  font-size: .62rem; font-weight: 800; letter-spacing: .05em; text-transform: uppercase;
+  padding: .12rem .4rem; border-radius: 999px; background: var(--ink); color: #fff; margin-right: .2rem;
 }
 
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
+@media (max-width: 26rem) {
+  .table { grid-template-columns: repeat(2, 1fr); }
 }
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--glass-border);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--text-secondary);
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.8s ease-out forwards;
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+  .element:hover, .element:focus-visible { transform: none; }
 }
