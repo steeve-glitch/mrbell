@@ -15,7 +15,7 @@ export const groups = [
 ];
 
 export const apps = [
-  { group: 'b2', symbol: 'Uo', name: 'Use of English', blurb: 'Paper 1, Parts 1–4', link: 'https://uoe.mrbell.app' },
+  { group: 'b2', symbol: 'Bf', name: 'B2 First Practice', blurb: 'Use of English, Reading, Listening', link: 'https://b2.mrbell.app' },
   { group: 'b2', symbol: 'Id', name: 'Idioms', blurb: '114 idioms, three ways', link: 'https://idioms.mrbell.app' },
   { group: 'b2', symbol: 'Nt', name: 'Narrative tenses', blurb: 'Four past forms', link: 'https://tenses.mrbell.app' },
   { group: 'b2', symbol: 'Rc', name: 'Relative clauses', blurb: 'The comma that matters', link: 'https://clauses.mrbell.app' },
